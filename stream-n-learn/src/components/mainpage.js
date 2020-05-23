@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './player.js'
-import Stream from './player.js';
-import MenuBar from './menubar.js'
-import Player from './player.js';
-import Chatbox from './chatbox.js';
+import Stream from './player';
+import MenuBar from './menubar'
+import Dashboard from './dashboard';
+import Chatbox from './chatbox';
 class Mainpage extends Component {
     render() {
       return (
         <div className="Mainpage">
           <MenuBar></MenuBar>
-           <Player></Player>
+          <Dashboard></Dashboard>
           <Chatbox></Chatbox>
         </div>
       );

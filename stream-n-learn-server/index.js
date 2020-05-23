@@ -10,4 +10,11 @@ app.get('/api/getList', (req,res) => {
     console.log('Sent list of items');
 });
 
+app.get('/api/getCourseList', (req,res) => {
+    var list = ["music", "programing", "dance"];
+    res.json(list);
+    console.log('Sent list of items');
+});
+
+
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
