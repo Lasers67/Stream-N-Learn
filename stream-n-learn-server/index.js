@@ -1,6 +1,7 @@
 const express = require('express')
 const CosmosClient = require('@azure/cosmos').CosmosClient
 const url = require('url')
+const posts = require('./posts')
 
 const config = require('./config')
 
