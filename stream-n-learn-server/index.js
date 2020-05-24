@@ -26,7 +26,7 @@ app.get('/api/getList', (req,res) => {
 });
 
 app.get('/api/getCourseList', (req,res) => {
-    var list = ["music", "programing", "dance"];
+    var list = ["music", "programing", "dance", "cooking", "robotics"];
     res.json(list);
     console.log('Sent list of items');
 });
