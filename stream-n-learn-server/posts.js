@@ -63,3 +63,26 @@ createDatabase()
   .catch(error => {
     console.log(`Completed with error for posts ${JSON.stringify(error)}`)
   })
+
+
+async function getAllPosts() {
+
+    const querySpec = {
+        query: 'SELECT * FROM posts',
+      }
+    
+      const { resources: results } = await client
+        .database(databaseId)
+        .container(containerId)
+        .items.query(querySpec)
+        .fetchAll()
+    //   for (var queryResult of results) {
+    //     let resultString = JSON.stringify(queryResult)
+    //     console.log(`\tQuery returned ${resultString}\n`)
+    //   }
+      return results;
+}
+
+module.exports = {
+    getAllPosts
+}

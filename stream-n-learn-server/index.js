@@ -31,6 +31,28 @@ app.get('/api/getCourseList', (req,res) => {
     console.log('Sent list of items');
 });
 
+/*
+Get the list of all posts
+
+returns of json array of items - 
+[
+  {
+    "title": String,
+    "description":
+    "duration": Integer denoting in hours
+    "cost": float denoting amount in rs.
+    "creator": username of creator
+    "start_time": string respresenting time in json ex. "2020-05-24T09:23:03.351Z"
+  }
+]
+*/
+
+app.get('/api/getAllPosts', (req,res) => {
+    posts.getAllPosts().then((results) => {
+      res.json(results);
+    });
+});
+
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
