@@ -20,7 +20,7 @@ class CourseModal extends Component{
 
     render(){
         return (
-            <>
+            <div>
             <Button variant="primary" onClick={this.handleShow}>
                 Get Course List
             </Button>
@@ -36,7 +36,7 @@ class CourseModal extends Component{
                 </Button>
                 </Modal.Footer>
             </Modal>
-            </>
+            </div>
         );
     }
 }
