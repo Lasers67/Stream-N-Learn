@@ -1,6 +1,7 @@
 const express = require('express')
 const CosmosClient = require('@azure/cosmos').CosmosClient
 const url = require('url')
+const posts = require('./posts')
 
 const config = require('./config')
 
@@ -25,9 +26,31 @@ app.get('/api/getList', (req,res) => {
 });
 
 app.get('/api/getCourseList', (req,res) => {
-    var list = ["music", "programing", "dance"];
+    var list = ["music", "programing", "dance", "cooking", "robotics"];
     res.json(list);
     console.log('Sent list of items');
+});
+
+/*
+Get the list of all posts
+
+returns of json array of items - 
+[
+  {
+    "title": String,
+    "description":
+    "duration": Integer denoting in hours
+    "cost": float denoting amount in rs.
+    "creator": username of creator
+    "start_time": string respresenting time in json ex. "2020-05-24T09:23:03.351Z"
+  }
+]
+*/
+
+app.get('/api/getAllPosts', (req,res) => {
+    posts.getAllPosts().then((results) => {
+      res.json(results);
+    });
 });
 
 

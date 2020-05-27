@@ -27,13 +27,17 @@ class CourseModal extends Component{
 
             <Modal show={this.state.show} onHide={this.handleClose}>
                 <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
+                <Modal.Title>Which of these tags would you like to follow</Modal.Title>
                 </Modal.Header>
                 <Modal.Body><CourseSelect></CourseSelect></Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={this.handleClose}>
+                <Button variant="primary" onClick={this.handleClose}>
+                    Save
+                </Button>
+                <Button variant="dark" onClick={this.handleClose}>
                     Close
                 </Button>
+                
                 </Modal.Footer>
             </Modal>
             </div>
