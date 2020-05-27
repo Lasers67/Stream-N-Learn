@@ -18,6 +18,52 @@ const client = new CosmosClient({ endpoint, key })
 const app = express()
 const port = 5000
 
+/* Socket */
+const http = require("http");
+const server = http.createServer(app);
+const io = require("socket.io")(server);
+const socketPort = 5002;
+server.listen(port, () => console.log(`Socket server is running on port ${port}`));
+var connections = [];
+
+io.sockets.on("error", e => console.log(e));
+io.sockets.on("connection", socket => {
+  connections.push(socket);
+  console.log('%s sockets connected!', connections.length);
+
+  socket.on("broadcaster", () => {
+    console.log("broadcaster");
+    broadcaster = socket.id;
+    socket.broadcast.emit("broadcaster");
+  });
+
+  socket.on("watcher", () => {
+    console.log("watcher");
+    socket.to(broadcaster).emit("watcher", socket.id);
+  });
+
+  socket.on("offer", (id, message) => {
+    console.log("offer");
+    socket.to(id).emit("offer", socket.id, message);
+  });
+
+  socket.on("answer", (id, message) => {
+    console.log("answer");
+    socket.to(id).emit("answer", socket.id, message);
+  });
+
+  socket.on("candidate", (id, message) => {
+    console.log("candidate");
+    socket.to(id).emit("candidate", socket.id, message);
+  });
+
+  socket.on("disconnect", () => {
+    connections.splice(connections.indexOf(socket.id), 1);
+    console.log("Disconnected: %s sockets connected!", connections.length);
+    socket.to(broadcaster).emit("disconnectPeer", socket.id);
+  });
+});
+
 app.use(bodyParser.json({ limit: "30MB", extended: true }))
 
 app.get('/', (req, res) => res.send('Hello World!'))
@@ -92,7 +138,7 @@ app.get('/api/joinSession', (req, res) => {
   });
 });
 
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+// app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
 
 async function createDatabase() {
