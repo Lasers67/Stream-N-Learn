@@ -83,6 +83,27 @@ async function getAllPosts() {
       return results;
 }
 
+async function joinPost(username, sessionId) {
+  const querySpec = {
+    query: 'SELECT * FROM posts WHERE posts.id="'+sessionId+'"',
+  }
+
+  const { resources: results } = await client
+    .database(databaseId)
+    .container(containerId)
+    .items.query(querySpec)
+    .fetchAll()
+  console.log(results);
+  results[0]["students"].push(username);
+  const { item } = await client
+    .database(databaseId)
+    .container(containerId)
+    .item(sessionId).replace(results[0]);
+  return "Subscribed to post.";    
+}
+
+
 module.exports = {
-    getAllPosts
+    getAllPosts,
+    joinPost
 }

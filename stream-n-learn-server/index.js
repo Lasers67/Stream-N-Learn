@@ -54,6 +54,17 @@ app.get('/api/getAllPosts', (req,res) => {
 });
 
 
+/*
+Request of form- /api/joinSession?username=username&id=courseid
+*/
+
+app.get('/api/joinSession', (req,res) => {
+    console.log(req.query);
+    posts.joinPost(req.query.username, req.query.postid).then((results) => {
+      res.json(results);
+    });
+});
+
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
 
@@ -203,9 +214,9 @@ async function cleanup() {
 function exit(message) {
   console.log(message)
   console.log('Press any key to exit')
-  process.stdin.setRawMode(true)
-  process.stdin.resume()
-  process.stdin.on('data', process.exit.bind(process, 0))
+  // process.stdin.setRawMode(true)
+  // process.stdin.resume()
+  // process.stdin.on('data', process.exit.bind(process, 0))
 }
 
 createDatabase()
@@ -213,12 +224,12 @@ createDatabase()
   .then(() => createContainer())
   .then(() => readContainer())
   .then(() => scaleContainer())
-  .then(() => createFamilyItem(config.items.Andersen))
-  .then(() => createFamilyItem(config.items.Wakefield))
+  // .then(() => createFamilyItem(config.items.Andersen))
+  // .then(() => createFamilyItem(config.items.Wakefield))
   .then(() => queryContainer())
-  .then(() => replaceFamilyItem(config.items.Andersen))
+  // .then(() => replaceFamilyItem(config.items.Andersen))
   .then(() => queryContainer())
-  .then(() => deleteFamilyItem(config.items.Andersen))
+  // .then(() => deleteFamilyItem(config.items.Andersen))
   .then(() => {
     exit(`Completed successfully`)
   })
