@@ -1,4 +1,5 @@
 const express = require('express')
+var bodyParser = require("body-parser")
 const CosmosClient = require('@azure/cosmos').CosmosClient
 const url = require('url')
 const posts = require('./posts')
@@ -17,18 +18,20 @@ const client = new CosmosClient({ endpoint, key })
 const app = express()
 const port = 5000
 
+app.use(bodyParser.json({ limit: "30MB", extended: true }))
+
 app.get('/', (req, res) => res.send('Hello World!'))
 
-app.get('/api/getList', (req,res) => {
-    var list = ["item1", "item2", "item3"];
-    res.json(list);
-    console.log('Sent list of items');
+app.get('/api/getList', (req, res) => {
+  var list = ["item1", "item2", "item3"];
+  res.json(list);
+  console.log('Sent list of items');
 });
 
-app.get('/api/getCourseList', (req,res) => {
-    var list = ["music", "programing", "dance", "cooking", "robotics"];
-    res.json(list);
-    console.log('Sent list of items');
+app.get('/api/getCourseList', (req, res) => {
+  var list = ["music", "programing", "dance", "cooking", "robotics"];
+  res.json(list);
+  console.log('Sent list of items');
 });
 
 /*
@@ -47,22 +50,46 @@ returns of json array of items -
 ]
 */
 
-app.get('/api/getAllPosts', (req,res) => {
-    posts.getAllPosts().then((results) => {
-      res.json(results);
-    });
+app.get('/api/getAllPosts', (req, res) => {
+  posts.getAllPosts().then((results) => {
+    res.json(results);
+  });
 });
+
+/**
+ * User to create his post/ course.
+ * req.body should be a JSON object:
+ * {
+ *  "title": String,
+    "description": String
+    "duration": Integer denoting in hours
+    "cost": float denoting amount in rs.
+    "creator": username of creator
+    "start_time": string respresenting time in json ex. "2020-05-24T09:23:03.351Z"
+ * }
+ */
+
+app.post('/api/createPost', (req, res, next) => {
+  req.body["students"] = [];
+  posts.createPost(req.body)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+})
 
 
 /*
 Request of form- /api/joinSession?username=username&id=courseid
 */
 
-app.get('/api/joinSession', (req,res) => {
-    console.log(req.query);
-    posts.joinPost(req.query.username, req.query.postid).then((results) => {
-      res.json(results);
-    });
+app.get('/api/joinSession', (req, res) => {
+  console.log(req.query);
+  posts.joinPost(req.query.username, req.query.postid).then((results) => {
+    res.json(results);
+  });
 });
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
@@ -118,13 +145,12 @@ async function scaleContainer() {
     .database(databaseId)
     .container(containerId)
     .read()
-  const {resources: offers} = await client.offers.readAll().fetchAll();
-  
+  const { resources: offers } = await client.offers.readAll().fetchAll();
+
   const newRups = 500;
   for (var offer of offers) {
-    if (containerDefinition._rid !== offer.offerResourceId)
-    {
-        continue;
+    if (containerDefinition._rid !== offer.offerResourceId) {
+      continue;
     }
     offer.content.offerThroughput = newRups;
     const offerToReplace = client.offer(offer.id);
