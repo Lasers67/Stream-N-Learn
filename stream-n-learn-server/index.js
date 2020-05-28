@@ -91,6 +91,8 @@ returns of json array of items -
     "duration": Integer denoting in hours
     "cost": float denoting amount in rs.
     "creator": username of creator
+    "students": Array of String(username)
+    "tags": Array of String
     "start_time": string respresenting time in json ex. "2020-05-24T09:23:03.351Z"
   }
 ]
@@ -111,13 +113,31 @@ app.get('/api/getAllPosts', (req, res) => {
     "duration": Integer denoting in hours
     "cost": float denoting amount in rs.
     "creator": username of creator
+    "students": Array of String(username)
+    "tags": Array of String
     "start_time": string respresenting time in json ex. "2020-05-24T09:23:03.351Z"
  * }
  */
 
 app.post('/api/createPost', (req, res, next) => {
-  req.body["students"] = [];
   posts.createPost(req.body)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+})
+
+/**
+ * Get list of all posts from a particular set of tags:
+ * req.body should be an array of tags:
+ * req.body: Array of String
+ * 
+ * returns Array of Posts
+ */
+app.get('/api/getAllPostsFromTags', (req, res, next) => {
+  posts.getAllPostsFromTags(req.body)
     .then((result) => {
       res.json(result);
     })

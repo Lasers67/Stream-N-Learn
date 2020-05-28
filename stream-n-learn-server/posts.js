@@ -83,11 +83,47 @@ async function getAllPosts() {
   return results;
 }
 
-async function createPost(newItem) {
-  console.log(newItem);
+async function createPost(body) {
+  const newItem = {
+    title: body.title,
+    description: body.description,
+    duration: body.duration,
+    cost: body.cost,
+    creator: body.creator,
+    students: [],
+    tags: body.tags,
+    start_time: body.start_time
+  };
+
   const { resource: createdItem } = await client.database(databaseId).container(containerId).items.create(newItem);
   console.log("New post created, id: ", createdItem.id, " title: ", createdItem.title);
   return "New post created";
+}
+
+async function getAllPostsFromTags(tags_arr) {
+
+  const querySpec = {
+    query: 'SELECT * FROM posts',
+  }
+
+  var results = [];
+
+  const { resources: all_posts } = await client
+    .database(databaseId)
+    .container(containerId)
+    .items.query(querySpec)
+    .fetchAll()
+
+  all_posts.forEach(post => {
+    for (var i = 0; i < tags_arr.length; i++) {
+      if (post.tags.indexOf(tags_arr[i]) > -1) {
+        results.push(post);
+        break;
+      }
+    }
+  });
+
+  return results;
 }
 
 async function joinPost(username, sessionId) {
@@ -113,5 +149,6 @@ async function joinPost(username, sessionId) {
 module.exports = {
   getAllPosts,
   joinPost,
-  createPost
+  createPost,
+  getAllPostsFromTags
 }
