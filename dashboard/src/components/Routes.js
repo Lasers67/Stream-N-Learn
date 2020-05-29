@@ -10,6 +10,7 @@ import EnrolmentsPage from './pages/EnrolmentsPage';
 import CreateCoursePage from './pages/CreateCoursePage';
 import Monetization from './pages/Monetization';
 import LiveWatcher from './LiveWatcher'
+import LiveStream from './LiveStream';
 
 class AppRoutes extends React.Component {
   render() {
@@ -26,6 +27,7 @@ class AppRoutes extends React.Component {
         <Route path='/createcourse' exact={true} component={CreateCoursePage} />
         <Route path='/createcourse/done' component={Monetization} />
         <Route path='/watchlive' component={LiveWatcher} />
+        <Route path='/streamlive' component={LiveStream} />
       </Switch>
     );
   }

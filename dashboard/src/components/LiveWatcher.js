@@ -121,15 +121,6 @@ class LiveWatcher extends Component {
     render() {
       return(
         <>
-          <section className="select">
-            <label htmlFor="audioSource">Audio source: </label>
-            <select id="audioSource"></select>
-          </section>
-
-          <section className="select">
-            <label htmlFor="videoSource">Video source: </label>
-            <select id="videoSource"></select>
-          </section>
 
           <video playsInline autoPlay muted></video>
         </>
