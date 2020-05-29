@@ -105,17 +105,17 @@ class LiveStream extends Component {
     render() {
       return(
         <>
-          <section class="select">
-            <label for="audioSource">Audio source: </label>
+          <section className="select">
+            <label htmlFor="audioSource">Audio source: </label>
             <select id="audioSource"></select>
           </section>
 
-          <section class="select">
-            <label for="videoSource">Video source: </label>
+          <section className="select">
+            <label htmlFor="videoSource">Video source: </label>
             <select id="videoSource"></select>
           </section>
 
-          <video playsinline autoplay muted></video>
+          <video playsInline autoPlay muted></video>
         </>
       )
     }

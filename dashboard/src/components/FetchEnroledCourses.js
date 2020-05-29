@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CourseFeedCard from './pages/sections/CourseFeedCard';
+import CourseEnrolCard from './pages/sections/CourseEnrolCard';
 
 class FetchEnroledCourses extends Component {
 
@@ -17,7 +17,7 @@ class FetchEnroledCourses extends Component {
 
   // Retrieves the list of items from the Express app
   getList = () => {
-    fetch('/api/getAllPosts')
+    fetch('/api/getAllEnroledPosts')
     .then(res => res.json())
     .then(list => this.setState({ list }))
   }
@@ -28,9 +28,9 @@ class FetchEnroledCourses extends Component {
     for (var i = 0; i < list.length; i+=3) {     
       rows.push(
         <div className="row" key={i}>
-          <div className="col-lg-4 col-md-12 mb-4"><CourseFeedCard course={list[i]} /></div>
-          <div className="col-lg-4 col-md-12 mb-4"><CourseFeedCard course={i+1 < list.length ? list[i+1] : ''} /></div>
-          <div className="col-lg-4 col-md-12 mb-4"><CourseFeedCard course={i+2 < list.length ? list[i+2] : ''} /></div>
+          <div className="col-lg-4 col-md-12 mb-4"><CourseEnrolCard course={list[i]} /></div>
+          <div className="col-lg-4 col-md-12 mb-4"><CourseEnrolCard course={i+1 < list.length ? list[i+1] : ''} /></div>
+          <div className="col-lg-4 col-md-12 mb-4"><CourseEnrolCard course={i+2 < list.length ? list[i+2] : ''} /></div>
         </div>
       );
     }
