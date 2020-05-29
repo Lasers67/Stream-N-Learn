@@ -91,6 +91,8 @@ returns of json array of items -
     "duration": Integer denoting in hours
     "cost": float denoting amount in rs.
     "creator": username of creator
+    "students": Array of String(username)
+    "tags": Array of String
     "start_time": string respresenting time in json ex. "2020-05-24T09:23:03.351Z"
   }
 ]
