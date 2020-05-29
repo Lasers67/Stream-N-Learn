@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {Button,Modal} from 'react-bootstrap'
 import CourseSelect from './CourseSelect'
 
+
+
+
 class CourseModal extends Component{
   
     constructor(props){
@@ -17,15 +20,21 @@ class CourseModal extends Component{
   handleShow = () => {
     this.setState({ show: true })
   }
+  
+  
 
+  
     render(){
+
         return (
             <div>
             <Button variant="primary" onClick={this.handleShow}>
                 Get Course List
             </Button>
 
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal 
+            size="lg" 
+            show={this.state.show} onHide={this.handleClose}>
                 <Modal.Header closeButton>
                 <Modal.Title>Which of these tags would you like to follow</Modal.Title>
                 </Modal.Header>
