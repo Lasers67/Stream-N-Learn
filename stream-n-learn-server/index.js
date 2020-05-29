@@ -153,6 +153,13 @@ app.get('/api/getAllEnroledPosts', (req, res) => {
   });
 });
 
+app.get('/api/getMyPosts', (req, res) => {
+  // console.log(req.query);
+  posts.getMyPosts(req.query.username).then((results) => {
+    res.json(results);
+  });
+});
+
 
 // app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 

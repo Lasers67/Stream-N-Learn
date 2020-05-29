@@ -126,6 +126,21 @@ async function getAllPostsFromTags(tags_arr) {
   return results;
 }
 
+async function getMyPosts(username) {
+
+  username = 'lakshya';
+  const querySpec = {
+    query: 'SELECT * FROM posts WHERE posts.creator="' + username + '"',
+  }
+
+  const { resources: results } = await client
+      .database(databaseId)
+      .container(containerId)
+      .items.query(querySpec)
+      .fetchAll()
+  return results;
+}
+
 async function getEnrolledPosts(username) {
 
   const querySpec = {
@@ -185,5 +200,6 @@ module.exports = {
   joinPost,
   createPost,
   getAllPostsFromTags,
-  getEnrolledPosts
+  getEnrolledPosts,
+  getMyPosts
 }
