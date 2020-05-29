@@ -126,6 +126,27 @@ async function getAllPostsFromTags(tags_arr) {
   return results;
 }
 
+async function getEnrolledPosts(username) {
+
+  const querySpec = {
+    query: 'SELECT users.courses FROM users WHERE users.username="' + username + '"',
+  }
+  console.log(querySpec);
+  const { resources: results } = await client
+    .database(databaseId)
+    .container("users")
+    .items.query(querySpec)
+    .fetchAll()
+
+  console.log("asd:" + results[0]["courses"]);
+  
+  var querySpec1 = {
+    query: 'SELECT * FROM posts WHERE posts.id IN (' + results[0]["courses"] + ')',
+  }
+  console.log(querySpec1)
+
+};
+
 async function joinPost(username, sessionId) {
   const querySpec = {
     query: 'SELECT * FROM posts WHERE posts.id="' + sessionId + '"',
@@ -150,5 +171,6 @@ module.exports = {
   getAllPosts,
   joinPost,
   createPost,
-  getAllPostsFromTags
+  getAllPostsFromTags,
+  getEnrolledPosts
 }

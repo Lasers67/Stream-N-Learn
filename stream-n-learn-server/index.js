@@ -141,6 +141,19 @@ app.get('/api/joinSession', (req, res) => {
   });
 });
 
+
+/*
+Request of form- /api/joinSession?username=username&id=courseid
+*/
+
+app.get('/api/getAllEnroledPosts', (req, res) => {
+  // console.log(req.query);
+  posts.getEnrolledPosts("lakshya").then((results) => {
+    res.json(results);
+  });
+});
+
+
 // app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
 
