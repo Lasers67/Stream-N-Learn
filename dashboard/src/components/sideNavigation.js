@@ -19,13 +19,13 @@ const TopNavigation = () => {
                 <NavLink to="/mycourses" activeClassName="activeClass">
                     <MDBListGroupItem>
                         <MDBIcon icon="chart-pie" className="mr-3"/>
-                        My Courses
+                        My Posts
                     </MDBListGroupItem>
                 </NavLink>
                 <NavLink to="/enroledcourses" activeClassName="activeClass">
                     <MDBListGroupItem>
                         <MDBIcon icon="chart-pie" className="mr-3"/>
-                       Courses Enroled
+                       My Enrollments
                     </MDBListGroupItem>
                 </NavLink>
                 <NavLink to="/profile" activeClassName="activeClass">

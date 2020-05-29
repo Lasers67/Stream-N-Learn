@@ -28,7 +28,7 @@ class TopNavigation extends Component {
                 <MDBCollapse isOpen = { this.state.collapse } navbar>
                     <MDBNavbarNav left>
                         <MDBNavItem active>
-                            <NavLink to="/createcourse">Create Course</NavLink>
+                            <NavLink to="/createcourse">Create New Post</NavLink>
                         </MDBNavItem>
                     </MDBNavbarNav>
                     <MDBNavbarNav right>
