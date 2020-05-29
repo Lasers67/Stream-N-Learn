@@ -138,13 +138,26 @@ async function getEnrolledPosts(username) {
     .items.query(querySpec)
     .fetchAll()
 
-  console.log("asd:" + results[0]["courses"]);
   
-  var querySpec1 = {
-    query: 'SELECT * FROM posts WHERE posts.id IN (' + results[0]["courses"] + ')',
-  }
-  console.log(querySpec1)
+  var q = '(';
 
+  results[0]["courses"].forEach(element => {
+    q +="'" + element + "', ";
+  });
+  q = q.substring(0, q.length - 2);
+  q += ")";
+
+  var querySpec1 = {
+    query: 'SELECT * FROM posts WHERE posts.id IN ' + q,
+  }
+ 
+  const { resources: results_return } = await client
+  .database(databaseId)
+  .container(containerId)
+  .items.query(querySpec1)
+  .fetchAll()
+
+  return results_return;
 };
 
 async function joinPost(username, sessionId) {
