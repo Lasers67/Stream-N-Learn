@@ -8,12 +8,12 @@ import ChartSection1 from './sections/ChartSection1';
 import ChartSection2 from './sections/ChartSection2';
 import MapSection from './sections/MapSection';
 import ModalSection from './sections/ModalSection';
-import FetchUserCourses from '../FetchUserCourses';
+import FetchEnroledCourses from '../FetchEnroledCourses';
 
-const DashboardPage =  () => {
+const EnrolmentsPage =  () => {
   return (
     <React.Fragment>
-      <FetchUserCourses/>
+      <FetchEnroledCourses/>
       {/* <BreadcrumSection />
       <AdminCardSection1 />
       <ChartSection1 />
@@ -28,4 +28,4 @@ const DashboardPage =  () => {
   )
 }
 
-export default DashboardPage;
+export default EnrolmentsPage;

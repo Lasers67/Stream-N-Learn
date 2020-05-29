@@ -2,6 +2,12 @@ import React from 'react';
 import { MDBCard, MDBCardBody, MDBIcon, MDBRow, MDBCol, MDBCardText } from 'mdbreact';
 
 const CourseFeedCard = ({course}) => {
+    var dateObj = new Date(course.start_time);
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+    var newdate = year + "/" + month + "/" + day;
+
     if(course == '')
         return (<></>);
   return (
@@ -17,7 +23,7 @@ const CourseFeedCard = ({course}) => {
                 
                 <h4 class="card-title"><strong>{course.title}</strong></h4>
                 
-                <h6 class="font-weight-bold indigo-text py-2">{course.instructor}</h6>
+                <h6 class="font-weight-bold indigo-text py-2">{course.creator}</h6>
                 
                 <p class="card-text">{course.description}
                 </p>
@@ -27,11 +33,11 @@ const CourseFeedCard = ({course}) => {
             </div>
 
             
-            <div class="card-footer text-muted text-center">
+            <div class="card-footer text-center">
                 <ul class="list-unstyled list-inline font-small">
-                    <li class="list-inline-item pr-2 white-text"><i class="far fa-clock pr-1"></i>{course.start}-{course.end}</li>
-                    <li class="list-inline-item pr-2"><a href="#" class="white-text"><i
-                            class="far fa-comments pr-1"></i>{course.comments}</a></li>
+                    <li class="list-inline-item pr-3"><i class="far fa-clock pr-1"></i>{newdate}</li>
+                    <li class="list-inline-item pr-3"><a href="#"><i class="far fa-comments pr-1"></i>{course.comments}</a></li>
+                    <li class="list-inline-item pr-3"><a href="#"><i class="far fa-user pr-1"></i>{course.students.length}</a></li>
                 </ul>
             </div>
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
-
+import {NavLink} from 'react-router-dom';
 class TopNavigation extends Component {
     state = {
         collapse: false
@@ -28,16 +28,7 @@ class TopNavigation extends Component {
                 <MDBCollapse isOpen = { this.state.collapse } navbar>
                     <MDBNavbarNav left>
                         <MDBNavItem active>
-                            {/* <MDBNavLink to="#">Home</MDBNavLink> */}
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <a rel="noopener noreferrer" className="nav-link Ripple-parent" href="https://mdbootstrap.com/docs/react/" target="_blank">About MDB</a>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <a rel="noopener noreferrer" className="nav-link Ripple-parent" href="https://mdbootstrap.com/docs/react/getting-started/download/" target="_blank">Free download</a>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <a rel="noopener noreferrer"  className="nav-link Ripple-parent" href="https://mdbootstrap.com/bootstrap-tutorial/" target="_blank">Free tutorials</a>
+                            <NavLink to="/createcourse">Create Course</NavLink>
                         </MDBNavItem>
                     </MDBNavbarNav>
                     <MDBNavbarNav right>

@@ -6,7 +6,8 @@ import TablesPage from './pages/TablesPage';
 import MapsPage from './pages/MapsPage';
 import NotFoundPage from './pages/NotFoundPage';
 import MyCoursesPage from './pages/MyCoursesPage';
-import EnrollmentsPage from './pages/EnrollmentsPage';
+import EnrolmentsPage from './pages/EnrolmentsPage';
+import CreateCoursePage from './pages/CreateCoursePage';
 
 class AppRoutes extends React.Component {
   render() {
@@ -15,11 +16,12 @@ class AppRoutes extends React.Component {
         <Route path='/' exact component={DashboardPage} />
         <Route path='/dashboard' component={DashboardPage} />
         <Route path='/mycourses' component={MyCoursesPage} />
-        <Route path='/enrolledcourses' component={EnrollmentsPage} />
+        <Route path='/enroledcourses' component={EnrolmentsPage} />
         <Route path='/profile' component={ProfilePage} />
         <Route path='/tables' component={TablesPage} />
         <Route path='/maps' component={MapsPage} />
         <Route path='/404' component={NotFoundPage} />
+        <Route path='/createcourse' component={CreateCoursePage} />
       </Switch>
     );
   }
