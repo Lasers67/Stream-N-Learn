@@ -5,23 +5,26 @@ import SideNavigation from './components/sideNavigation';
 import Footer from './components/Footer';
 import CourseCard from './components/CourseCard';
 import './index.css';
-import { Route } from 'react-router-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
+import AppRoutes from './components/Routes'
+import LiveStream from './components/LiveStream';
 
-class App extends Component {
-  
+class App extends Component {  
   render() {
     return (
+      <Router>
+        <>
+        <TopNavigation />
+        <SideNavigation />
         <div className="flexible-content">
-          {/* <Routes/> */}
-          <TopNavigation />
-          {/* <Routes> */}
-            <SideNavigation />
-          {/* </Routes> */}
+          
           <main id="content" className="p-5">
-            <CourseCard/>
+            <AppRoutes/>
           </main>
           <Footer />
         </div>
+        </>
+      </Router>
     );
   }
 }

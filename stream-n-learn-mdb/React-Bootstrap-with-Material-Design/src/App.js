@@ -3,6 +3,7 @@ import { MDBBtn, MDBCol, MDBContainer, MDBRow } from "mdbreact";
 import "./index.css";
 import logo from "./logo.png";
 import FormPage from './components/Form'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 class App extends Component {
   render() {
