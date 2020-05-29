@@ -28,7 +28,7 @@ class Dashboard extends Component {
     render() {
       const courseList = this.state.relCourseList;
       return (
-        <>
+        <div>
             <CourseModal></CourseModal>
            
       {courseList.length ? (
@@ -49,7 +49,7 @@ class Dashboard extends Component {
           </div>
         )
       }
-        </>
+        </div>
       );
     }
   }
