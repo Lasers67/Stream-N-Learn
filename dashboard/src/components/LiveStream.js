@@ -79,10 +79,33 @@ class LiveStream extends Component {
       this.videoElement = document.querySelector("video");
       this.audioSelect = document.querySelector("select#audioSource");
       this.videoSelect = document.querySelector("select#videoSource");
+      socket.on("watcher", id => {
+        const peerConnection = new RTCPeerConnection(config);
+        peerConnections[id] = peerConnection;
+      
+        let stream = this.videoElement.srcObject;
+        stream.getTracks().forEach(track => peerConnection.addTrack(track, stream));
+          
+        peerConnection.onicecandidate = event => {
+          if (event.candidate) {
+            socket.emit("candidate", id, event.candidate);
+          }
+        };
+      
+        peerConnection
+          .createOffer()
+          .then(sdp => peerConnection.setLocalDescription(sdp))
+          .then(() => {
+            socket.emit("offer", id, peerConnection.localDescription);
+          });
+      });
+      
+      
       socket.on("answer", (id, description) => {
         peerConnections[id].setRemoteDescription(description);
       });
       socket.on("candidate", (id, candidate) => {
+        console.log(id);
         peerConnections[id].addIceCandidate(new RTCIceCandidate(candidate));
       });
       

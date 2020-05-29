@@ -2,7 +2,7 @@ import socketIOClient from "socket.io-client";
 import React, { Component } from "react";
 
 /* eslint-disable no-undef */
-const peerConnections = {};
+var peerConnection = "";
 const config = {
   iceServers: [
     {
@@ -17,63 +17,6 @@ class LiveWatcher extends Component {
     constructor() {
         super();
         this.videoElement = '';
-      this.audioSelect = '';
-      this.videoSelect = '';
-      this.gotDevices = this.gotDevices.bind(this);
-      this.getStream = this.getStream.bind(this);
-      this.gotStream = this.gotStream.bind(this);
-    }
-    
-    getDevices() {
-      return navigator.mediaDevices.enumerateDevices();
-    }
-    
-    gotDevices(deviceInfos) {
-      window.deviceInfos = deviceInfos;
-      for (const deviceInfo of deviceInfos) {
-        const option = document.createElement("option");
-        option.value = deviceInfo.deviceId;
-        if (deviceInfo.kind === "audioinput") {
-          option.text = deviceInfo.label || `Microphone ${audioSelect.length + 1}`;
-          this.audioSelect.appendChild(option);
-        } else if (deviceInfo.kind === "videoinput") {
-          option.text = deviceInfo.label || `Camera ${videoSelect.length + 1}`;
-          this.videoSelect.appendChild(option);
-        }
-      }
-    }
-    getStream() {
-      if (window.stream) {
-        window.stream.getTracks().forEach(track => {
-          track.stop();
-        });
-      }
-      const audioSource = this.audioSelect.value;
-      const videoSource = this.videoSelect.value;
-      const constraints = {
-        audio: { deviceId: audioSource ? { exact: audioSource } : undefined },
-        video: { deviceId: videoSource ? { exact: videoSource } : undefined }
-      };
-      return navigator.mediaDevices
-        .getUserMedia(constraints)
-        .then(this.gotStream)
-        .catch(this.handleError);
-    }
-    
-    gotStream(stream) {
-      window.stream = stream;
-      this.audioSelect.selectedIndex = [...this.audioSelect.options].findIndex(
-        option => option.text === stream.getAudioTracks()[0].label
-      );
-      this.videoSelect.selectedIndex = [...this.videoSelect.options].findIndex(
-        option => option.text === stream.getVideoTracks()[0].label
-      );
-      this.videoElement.srcObject = stream;
-      socket.emit("broadcaster");
-    }
-    
-    handleError(error) {
-      console.error("Error: ", error);
     }
     componentDidMount() {
       this.videoElement = document.querySelector("video");
@@ -87,7 +30,7 @@ class LiveWatcher extends Component {
             socket.emit("answer", id, peerConnection.localDescription);
           });
         peerConnection.ontrack = event => {
-          videoElement.srcObject = event.streams[0];
+          this.videoElement.srcObject = event.streams[0];
         };
         peerConnection.onicecandidate = event => {
           if (event.candidate) {
