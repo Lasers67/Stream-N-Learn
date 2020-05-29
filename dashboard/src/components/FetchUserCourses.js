@@ -17,7 +17,7 @@ class FetchUserCourses extends Component {
 
   // Retrieves the list of items from the Express app
   getList = () => {
-    fetch('/api/getAllPosts')
+    fetch('/api/getMyPosts')
     .then(res => res.json())
     .then(list => this.setState({ list }))
   }

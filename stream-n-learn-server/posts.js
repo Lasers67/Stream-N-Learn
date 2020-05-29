@@ -126,6 +126,55 @@ async function getAllPostsFromTags(tags_arr) {
   return results;
 }
 
+async function getMyPosts(username) {
+
+  username = 'lakshya';
+  const querySpec = {
+    query: 'SELECT * FROM posts WHERE posts.creator="' + username + '"',
+  }
+
+  const { resources: results } = await client
+      .database(databaseId)
+      .container(containerId)
+      .items.query(querySpec)
+      .fetchAll()
+  return results;
+}
+
+async function getEnrolledPosts(username) {
+
+  const querySpec = {
+    query: 'SELECT users.courses FROM users WHERE users.username="' + username + '"',
+  }
+  console.log(querySpec);
+  const { resources: results } = await client
+    .database(databaseId)
+    .container("users")
+    .items.query(querySpec)
+    .fetchAll()
+
+  
+  var q = '(';
+
+  results[0]["courses"].forEach(element => {
+    q +="'" + element + "', ";
+  });
+  q = q.substring(0, q.length - 2);
+  q += ")";
+
+  var querySpec1 = {
+    query: 'SELECT * FROM posts WHERE posts.id IN ' + q,
+  }
+ 
+  const { resources: results_return } = await client
+  .database(databaseId)
+  .container(containerId)
+  .items.query(querySpec1)
+  .fetchAll()
+
+  return results_return;
+};
+
 async function joinPost(username, sessionId) {
   const querySpec = {
     query: 'SELECT * FROM posts WHERE posts.id="' + sessionId + '"',
@@ -150,5 +199,7 @@ module.exports = {
   getAllPosts,
   joinPost,
   createPost,
-  getAllPostsFromTags
+  getAllPostsFromTags,
+  getEnrolledPosts,
+  getMyPosts
 }
