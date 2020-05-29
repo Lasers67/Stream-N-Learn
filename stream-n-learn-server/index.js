@@ -25,6 +25,7 @@ const io = require("socket.io")(server);
 const socketPort = 5002;
 server.listen(port, () => console.log(`Socket server is running on port ${port}`));
 var connections = [];
+let broadcaster;
 
 io.sockets.on("error", e => console.log(e));
 io.sockets.on("connection", socket => {

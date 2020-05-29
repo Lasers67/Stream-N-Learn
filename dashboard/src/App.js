@@ -20,7 +20,7 @@ class App extends Component {
           
           <main id="content" className="p-5">
             <AppRoutes/>
-            {/* <LiveStream></LiveStream> */}
+            <LiveStream></LiveStream>
           </main>
           <Footer />
         </div>
