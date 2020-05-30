@@ -26,12 +26,12 @@ class TopNavigation extends Component {
                 </MDBNavbarBrand> */}
                 <MDBNavbarToggler onClick = { this.onClick } />
                 <MDBCollapse isOpen = { this.state.collapse } navbar>
-                    <MDBNavbarNav left>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<MDBNavbarNav left>
                         <MDBNavItem active>
                             <NavLink to="/createcourse">Create New Post</NavLink>
                         </MDBNavItem>
                     </MDBNavbarNav>
-                    <MDBNavbarNav right>
+                    {/* <MDBNavbarNav right>
                         <MDBNavItem>
                             <a className="nav-link navbar-link" rel="noopener noreferrer" target="_blank" href="https://pl-pl.facebook.com/mdbootstrap/"><MDBIcon fab icon="facebook" /></a>
                         </MDBNavItem>
@@ -44,7 +44,7 @@ class TopNavigation extends Component {
                         <MDBNavItem>
                             <a className="border border-light rounded mr-1 nav-link Ripple-parent" rel="noopener noreferrer" href="https://mdbootstrap.com/products/react-ui-kit/" target="_blank"><MDBIcon fab icon="github" className="mr-2"/>Go Pro</a>
                         </MDBNavItem>
-                    </MDBNavbarNav>
+                    </MDBNavbarNav> */}
                 </MDBCollapse>
             </MDBNavbar>
         );

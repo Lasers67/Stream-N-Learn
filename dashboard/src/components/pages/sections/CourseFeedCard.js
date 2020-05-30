@@ -39,9 +39,19 @@ class CourseFeedCard extends Component {
                 
                 <h6 class="font-weight-bold indigo-text py-2">{this.course.creator}</h6>
                 
-                <p class="card-text">{this.course.description}
-                </p>
-                
+                <p class="card-text">{this.course.description}</p>
+                <p>Tags : {this.course.tags.length ? (
+                    this.course.tags.map((item) => {
+                        return(
+                            <>{item}&nbsp;</>
+                        );
+                    })
+                    ) : (
+                    <div>
+                        <h2>No List Items Found</h2>
+                    </div>
+                    )
+                }</p>
                 <a class="btn btn-unique">Enroll</a>
 
             </div>

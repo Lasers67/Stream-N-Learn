@@ -29,7 +29,7 @@ class FetchDashBoardCourses extends Component {
       rows.push(
         <div className="row" key={i}>
           <div className="col-lg-4 col-md-12 mb-4"><CourseFeedCard course={list[i]} /></div>
-          <div className="col-lg-4 col-md-12 mb-4"><CourseFeedCard course={i+1 < list.length ? list[i+1] : ''} /></div>
+          <div className="col-lg-4 col-md-12 mb-4"><CourseFeedCard course={i+1 < list.length  ? list[i+1]  : ''} /></div>
           <div className="col-lg-4 col-md-12 mb-4"><CourseFeedCard course={i+2 < list.length ? list[i+2] : ''} /></div>
         </div>
       );
