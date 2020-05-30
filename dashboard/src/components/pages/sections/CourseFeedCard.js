@@ -15,9 +15,7 @@ class CourseFeedCard extends Component {
         this.day = this.dateObj.getUTCDate();
         this.year = this.dateObj.getUTCFullYear();
         this.newdate = this.year + "/" + this.month + "/" + this.day;
-    }
-
-    
+    }    
 
     handleOnClick = () => {
         this.setState({redirect: true});
@@ -29,7 +27,7 @@ class CourseFeedCard extends Component {
     return (
         <div class="card card-cascade" onClick={this.handleOnClick}>
             <div class="view view-cascade overlay">
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap" />
+                <img class="card-img-top" src={process.env.PUBLIC_URL + "images/" +  this.course.image_url} alt="Card image cap" />
                 <a>
                 <div class="mask rgba-white-slight"></div>
                 </a>
