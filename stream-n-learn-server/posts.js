@@ -76,11 +76,18 @@ async function getAllPosts() {
     .container(containerId)
     .items.query(querySpec)
     .fetchAll()
+
+  var final = []
+  for(var queryResult of results) {
+    if(queryResult["creator"] != "lakshya" && !queryResult["students"].includes("lakshya")) {
+      final.push(queryResult);
+    }
+  }
   //   for (var queryResult of results) {
   //     let resultString = JSON.stringify(queryResult)
   //     console.log(`\tQuery returned ${resultString}\n`)
   //   }
-  return results;
+  return final;
 }
 
 async function createPost(body) {
