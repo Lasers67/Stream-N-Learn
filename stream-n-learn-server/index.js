@@ -160,6 +160,13 @@ app.get('/api/getMyPosts', (req, res) => {
   });
 });
 
+app.get('/api/getPostInfo', (req, res) => {
+  // console.log(req.query);
+  posts.getPostInfo(req.query.postid).then((results) => {
+    res.json(results);
+  });
+});
+
 
 // app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 

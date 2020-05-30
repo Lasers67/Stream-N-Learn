@@ -194,6 +194,18 @@ async function joinPost(username, sessionId) {
   return "Subscribed to post.";
 }
 
+async function getPostInfo(postid) {
+  const querySpec = {
+    query: 'SELECT * FROM posts WHERE posts.id="' + postid + '"',
+  }
+
+  const { resources: results } = await client
+    .database(databaseId)
+    .container(containerId)
+    .items.query(querySpec)
+    .fetchAll()
+  return results;
+}
 
 module.exports = {
   getAllPosts,
@@ -201,5 +213,6 @@ module.exports = {
   createPost,
   getAllPostsFromTags,
   getEnrolledPosts,
-  getMyPosts
+  getMyPosts,
+  getPostInfo
 }
