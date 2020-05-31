@@ -13,7 +13,7 @@ const CourseEnrolCard = ({course, img}) => {
   return (
         <div class="card card-cascade">
             <div class="view view-cascade overlay">
-                <img class="card-img-top" src={process.env.PUBLIC_URL + "images/" +  course.image_url} alt="Card image cap" />
+                <img class="card-img-top" src={img} alt="Card image cap" />
                 <a>
                 <div class="mask rgba-white-slight"></div>
                 </a>

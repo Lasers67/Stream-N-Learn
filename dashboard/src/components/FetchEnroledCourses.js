@@ -40,8 +40,8 @@ class FetchEnroledCourses extends Component {
     for (var i = 0; i < this.state.course_list.length; i+=3) {     
       rows.push(
         <div className="row" key={i}>
-          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[0],course_image:"guitar_big.jpg"})}}><CourseEnrolCard course={this.state.course_list[i]} img="https://learnworthy.net/wp-content/uploads/2019/12/Why-programming-is-the-skill-you-have-to-learn-1280x720.jpg" /></div>
-          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[1]})}}><CourseEnrolCard course={i+1 < this.state.course_list.length ? this.state.course_list[i+1] : ''} /></div>
+          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[0],course_image:"programming_big.jpg"})}}><CourseEnrolCard course={this.state.course_list[i]} img="https://learnworthy.net/wp-content/uploads/2019/12/Why-programming-is-the-skill-you-have-to-learn-1280x720.jpg" /></div>
+          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[1],course_image:"guitar_big.jpg"})}}><CourseEnrolCard course={i+1 < this.state.course_list.length ? this.state.course_list[i+1] : ''} img="https://intenseblog.com/wp-content/uploads/2013/11/Rock-Posters-1280x720.jpg" /></div>
           <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[2]})}}><CourseEnrolCard course={i+2 < this.state.course_list.length ? this.state.course_list[i+2] : ''} /></div>
 
         </div>
