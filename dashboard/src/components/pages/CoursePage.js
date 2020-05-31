@@ -26,12 +26,18 @@ class CoursePage extends Component {
         }
         if(this.course == '')
             return (<></>);
+            var dateObj = new Date(this.props.course.course.start_time);
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+            var newdate = year + "/" + month + "/" + day;
+        
     return(
         
         <div class="card card-cascade wider reverse">
                 {this.type}
             <div class="view view-cascade overlay">
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Card image cap"/>
+                <img class="card-img-top" src={process.env.PUBLIC_URL + "images/" +  this.props.course.course.image_url} alt="Card image cap"/>
                 <a href="#">
                 <div class="mask rgba-white-slight"></div>
                 </a>
@@ -42,10 +48,14 @@ class CoursePage extends Component {
 
                 
                 <h4 class="card-title"><strong>{this.props.course.course.title}</strong></h4>
+                <h6 class="card-title"><strong>By: {this.props.course.course.creator}</strong></h6>
                 
-    <h6 class="font-weight-bold indigo-text py-2">{tags}</h6>
+                <h6 class="font-weight-bold indigo-text py-2">{tags}</h6>
                 
-                <p class="card-text">{this.props.course.course.description}
+                <p class="card-text">{this.props.course.course.description}</p>
+                <p class="card-text">Scheduled On:  {newdate}</p>
+                <p class="card-text">Duration:  {this.props.course.course.duration} hours
+
                 </p>
 
                 
