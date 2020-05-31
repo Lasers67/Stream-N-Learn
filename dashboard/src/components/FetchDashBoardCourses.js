@@ -34,8 +34,10 @@ class FetchDashBoardCourses extends Component {
     for (var i = 0; i < this.state.course_list.length; i+=3) {     
       rows.push(
         <div className="row" key={i}>
+
           <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[0]})}}><CourseFeedCard course={this.state.course_list[i]} /></div>
           <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[1]})}}><CourseFeedCard course={i+1 < this.state.course_list.length ? this.state.course_list[i+1] : ''} /></div>
+
           <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[2]})}}><CourseFeedCard course={i+2 < this.state.course_list.length ? this.state.course_list[i+2] : ''} /></div>
         </div>
       );

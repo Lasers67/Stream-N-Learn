@@ -39,9 +39,19 @@ class CourseFeedCard extends Component {
                 
                 <h6 class="font-weight-bold indigo-text py-2">{this.course.creator}</h6>
                 
-                <p class="card-text">{this.course.description}
-                </p>
-                
+                <p class="card-text">{this.course.description}</p>
+                <p>Tags : {this.course.tags.length ? (
+                    this.course.tags.map((item) => {
+                        return(
+                            <>{item}&nbsp;</>
+                        );
+                    })
+                    ) : (
+                    <div>
+                        <h2>No List Items Found</h2>
+                    </div>
+                    )
+                }</p>
                 <a class="btn btn-unique">Enroll</a>
 
             </div>
@@ -50,7 +60,7 @@ class CourseFeedCard extends Component {
             <div class="card-footer text-center">
                 <ul class="list-unstyled list-inline font-small">
                     <li class="list-inline-item pr-3"><i class="far fa-clock pr-1"></i>{this.newdate}</li>
-                    <li class="list-inline-item pr-3"><a href="#"><i class="far fa-comments pr-1"></i>{this.course.comments}</a></li>
+                    <li class="list-inline-item pr-3"><a href="#"><i class="far fa-comments pr-1"></i>0</a></li>
                     <li class="list-inline-item pr-3"><a href="#"><i class="far fa-user pr-1"></i>{this.course.students.length}</a></li>
                 </ul>
             </div>
