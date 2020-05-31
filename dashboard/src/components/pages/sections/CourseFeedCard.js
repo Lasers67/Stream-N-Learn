@@ -60,7 +60,7 @@ class CourseFeedCard extends Component {
             <div class="card-footer text-center">
                 <ul class="list-unstyled list-inline font-small">
                     <li class="list-inline-item pr-3"><i class="far fa-clock pr-1"></i>{this.newdate}</li>
-                    <li class="list-inline-item pr-3"><a href="#"><i class="far fa-comments pr-1"></i>{this.course.comments}</a></li>
+                    <li class="list-inline-item pr-3"><a href="#"><i class="far fa-comments pr-1"></i>0</a></li>
                     <li class="list-inline-item pr-3"><a href="#"><i class="far fa-user pr-1"></i>{this.course.students.length}</a></li>
                 </ul>
             </div>
