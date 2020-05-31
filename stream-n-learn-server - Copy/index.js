@@ -16,7 +16,7 @@ const partitionKey = { kind: 'Hash', paths: ['/Country'] }
 const client = new CosmosClient({ endpoint, key })
 
 const app = express()
-const port = 5000
+const port = 6000
 
 /* Socket */
 const http = require("http");
@@ -130,12 +130,14 @@ app.post('/api/createPost', (req, res, next) => {
     })
 })
 
-/**
- * req.body.username: username,
- * req.body.postid: course_id
- */
-app.post('/api/joinSession', (req, res) => {
-  posts.joinPost(req.body.username, req.body.postid).then((results) => {
+
+/*
+Request of form- /api/joinSession?username=username&id=courseid
+*/
+
+app.get('/api/joinSession', (req, res) => {
+  console.log(req.query);
+  posts.joinPost(req.query.username, req.query.postid).then((results) => {
     res.json(results);
   });
 });
@@ -147,7 +149,7 @@ Request of form- /api/joinSession?username=username&id=courseid
 
 app.get('/api/getAllEnroledPosts', (req, res) => {
   // console.log(req.query);
-  posts.getEnrolledPosts("lakshya").then((results) => {
+  posts.getEnrolledPosts("vishal").then((results) => {
     res.json(results);
   });
 });

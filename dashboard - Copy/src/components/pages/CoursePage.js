@@ -23,7 +23,7 @@ class CoursePage extends Component {
     render() {
         var min = 1;
    var max = 100;
-   var rand =  20;
+   var rand =  min + (Math.random() * (max-min));
 
 
         var tags=[];

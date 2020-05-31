@@ -23,7 +23,6 @@ class CreateCoursePage extends Component {
         <input type="text" style={{width: 300}} id="defaultContactFormName" class="form-control mb-1" placeholder="Duration (in hours)"/>
         <input type="text"  style={{width: 300}} id="defaultContactFormName" class="form-control mb-2" placeholder="Start Date"/>
         <input type="text"  style={{width: 300}} id="defaultContactFormName" class="form-control mb-2" placeholder="Start Time"/>
-        <input type="text"  style={{width: 300}} id="defaultContactFormName" class="form-control mb-2" placeholder="Price"/>
         <div class="custom-control custom-radio custom-control-inline">
           <label style={{"margin-right":"30px"}}>Make Course Live or upload as a playlist:</label>
           <input type="radio" class="custom-control-input" id="defaultInline1" name="createCourse" />
