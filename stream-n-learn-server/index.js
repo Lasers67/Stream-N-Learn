@@ -167,6 +167,10 @@ app.get('/api/getPostInfo', (req, res) => {
   });
 });
 
+/**
+ * req.body: Array[String]
+ * return: Array of Posts
+ */
 app.get('/api/getAllPostsFromTags', (req, res, next) => {
   posts.getAllPostsFromTags(req.body)
     .then((result) => {
