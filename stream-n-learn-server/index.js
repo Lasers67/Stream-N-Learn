@@ -167,6 +167,16 @@ app.get('/api/getPostInfo', (req, res) => {
   });
 });
 
+app.get('/api/getAllPostsFromTags', (req, res, next) => {
+  posts.getAllPostsFromTags(req.body)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+})
+
 
 // app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
