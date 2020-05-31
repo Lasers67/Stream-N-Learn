@@ -20,6 +20,24 @@ class CourseFeedCard extends Component {
     handleOnClick = () => {
         this.setState({redirect: true});
     }
+
+    enrollThisCourse = () => {
+        console.log(this.props.course);
+        fetch('/api/joinSession', {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            "body": JSON.stringify({
+                username: "lakshya",
+                postid: this.props.course.id
+            })
+        })
+        .then((res) => {
+            console.log(res);
+        })
+    }
     
     render() {
     if(this.course == '')
@@ -52,7 +70,7 @@ class CourseFeedCard extends Component {
                     </div>
                     )
                 }</p>
-                <a class="btn btn-unique">Enroll</a>
+                <a class="btn btn-unique" onClick={this.enrollThisCourse}>Enroll</a>
 
             </div>
 
