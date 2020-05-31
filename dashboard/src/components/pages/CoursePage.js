@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
-import DragAndDrop from '../Dragndrop';
+import {MDBBtn} from 'mdbreact';
 class CoursePage extends Component {
 
     constructor(props){
         super(props);
         this.state = {
             list: [],
-            showEnrol : true,
-            modal: false,
-            files:[]
+            current_state:""
         }
-        console.log(this.props.course.course.title);
+        console.log(this.props);
         // this.course = this.props.course;
 
         // this.type = this.props.route.type;
@@ -22,63 +19,50 @@ class CoursePage extends Component {
         // this.year = this.dateObj.getUTCFullYear();
         // this.newdate = this.year + "/" + this.month + "/" + this.day;
     }
-    handleDrop = (files) => {
-        let fileList = this.state.files
-        for (var i = 0; i < files.length; i++) {
-          if (!files[i].name) return
-          fileList.push(files[i].name)
-        }
-        this.setState({files: fileList})
-    }
-    toggle = () => {
-        this.setState({
-          modal: !this.state.modal
-        });
-      }
     
     render() {
+        var min = 1;
+   var max = 100;
+   var rand =  min + (Math.random() * (max-min));
+
+
         var tags=[];
         for(var i=0;i<this.props.course.course.tags.length;i++){
-            tags.push(<span>{this.props.course.course.tags[i]} &nbsp;</span>);
-        }
-        let enrolButton;
-        let liveBtn="";
-        if(this.state.showEnrol == true && this.props.course.course.creator != "lakshya" && this.props.course.course.students.indexOf("lakshya") == -1) {
-            enrolButton = <a class="btn btn-unique" onClick={() => this.setState({showEnrol:false})}>Enroll</a>;
-        } else {
-            enrolButton ='';
-        }
-
-        if(this.props.course.course.creator == "lakshya") {
-            liveBtn = <>
-            <a href="/streamlive" class="btn btn-primary">Go Live</a>
-            <MDBBtn onClick={this.toggle}>Upload Playlist</MDBBtn>
-            <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
-                <MDBModalHeader toggle={this.toggle}>Upload Courses</MDBModalHeader>
-                <MDBModalBody>
-                    <DragAndDrop handleDrop={this.handleDrop}>
-                        <div style={{height: 300, width: 250}}>
-                        {this.state.files.map((file) =>
-                            <div key={i}>{file}</div>
-                        )}
-                    </div>
-                </DragAndDrop>
-                </MDBModalBody>
-                <MDBModalFooter>
-                <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>
-                <MDBBtn color="primary" onClick={this.toggle}>Save changes</MDBBtn>
-                </MDBModalFooter>
-            </MDBModal>
-            </>
+        tags.push(<span>{this.props.course.course.tags[i]} &nbsp;</span>);
         }
         if(this.course == '')
             return (<></>);
+            var dateObj = new Date(this.props.course.course.start_time);
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+            var newdate = year + "/" + month + "/" + day;
+        let price;
+        price=price=<p class="card-text"><h4>Price: ${parseInt(rand)}.00</h4>
+        </p>;;
+        if(this.props.type=="Enrolled" || this.state.current_state=="Enrolled")
+            price=<></>;
+        let button;
+        button=<></>;
+        if(this.props.type=="Enrolled" || this.state.current_state=="Enrolled")
+        {
+            button=<MDBBtn color="green" size="lg">Watch Live</MDBBtn>    
+        }
+
+
+        if(this.props.type=="My"){
+            button=<MDBBtn color="green" size="lg">Go Live</MDBBtn>
+        }
+        if(this.props.type=="UnEnrolled" && this.state.current_state!="Enrolled"){
+            button=<MDBBtn color="primary" onClick={()=>{this.setState({current_state:"Enrolled"})}}>Enrol Me</MDBBtn>
+        }
     return(
         
         <div class="card card-cascade wider reverse">
-            {this.type}
+                {this.type}
             <div class="view view-cascade overlay">
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Card image cap"/>
+                <img class="card-img-top" src={process.env.PUBLIC_URL + "images/" +  this.props.course.image} alt="Card image cap"/>
+
                 <a href="#">
                 <div class="mask rgba-white-slight"></div>
                 </a>
@@ -89,15 +73,25 @@ class CoursePage extends Component {
 
                 
                 <h4 class="card-title"><strong>{this.props.course.course.title}</strong></h4>
+                <h6 class="card-title"><strong>By: {this.props.course.course.creator}</strong></h6>
                 
-                <p class="font-weight-bold" >Tags : {tags}</p>
+                <h6 class="font-weight-bold indigo-text py-2">{tags}</h6>
                 
-                <p class="card-text">{this.props.course.course.description}
-                </p>
-                {enrolButton}
-                {liveBtn}
+                <p class="card-text">{this.props.course.course.description}</p>
+                <p class="card-text">Scheduled On:  {newdate}</p>
+                <p class="card-text">Duration:  {this.props.course.course.duration} hours</p>
+                {price}
+                {button}<br /><br /><br />
+
+                
+                <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
+                
+                <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
+                
+                <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>
+                
             </div>
-            
+
         </div>
     );
   }

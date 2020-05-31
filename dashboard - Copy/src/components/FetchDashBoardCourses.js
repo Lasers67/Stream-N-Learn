@@ -8,7 +8,8 @@ class FetchDashBoardCourses extends Component {
     this.state = {
       course_list: [],
       show:false,
-      course_prop: ""
+      course_prop: "",
+      course_image: ""
     }
   }
 
@@ -25,31 +26,44 @@ class FetchDashBoardCourses extends Component {
   }
   show_page(props){
     
-    return(<CoursePage course={props}/>);
+    return(<CoursePage course={props} type="UnEnrolled"/>);
   }
   render() {
     // const { list } = this.state.course_list;
-    var rows = [];
-    
-    for (var i = 0; i < this.state.course_list.length; i+=3) {  
-      rows.push(
+    var rows1 = [];
+    var rows2 = [];
+    for (var i = 0; i < this.state.course_list.length; i+=3) {     
+      rows1.push(
         <div className="row" key={i}>
 
-          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[0]})}}><CourseFeedCard course={this.state.course_list[i]} /></div>
-          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[1]})}}><CourseFeedCard course={i+1 < this.state.course_list.length ? this.state.course_list[i+1] : ''} /></div>
+          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[0],course_image:"programming_big.jpg"})}}><CourseFeedCard course={this.state.course_list[i]} /></div>
+          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[1],course_image:"cooking_big.jpg"})}}><CourseFeedCard course={i+1 < this.state.course_list.length ? this.state.course_list[i+1] : ''} /></div>
 
-          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[2]})}}><CourseFeedCard course={i+2 < this.state.course_list.length ? this.state.course_list[i+2] : ''} /></div>
+          <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[2],course_image:"chess_big.jpg"})}}><CourseFeedCard course={i+2 < this.state.course_list.length ? this.state.course_list[i+2] : ''} /></div>
         </div>
+        
       );
     }
+    // for (var i = 0; i < this.state.course_list.length; i+=3) {     
+    //   rows1.push(
+    //     <div className="row" key={i}>
+
+    //       <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[0]})}}><CourseFeedCard course={this.state.course_list[i]} /></div>
+    //       <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[1]})}}><CourseFeedCard course={i+1 < this.state.course_list.length ? this.state.course_list[i+1] : ''} /></div>
+
+    //       <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[2]})}}><CourseFeedCard course={i+2 < this.state.course_list.length ? this.state.course_list[i+2] : ''} /></div>
+    //     </div>
+    //   );
+    // }
     if(this.state.show==false)
     return(
     <>
-      {rows}      
+
+      {rows1}      
     </>
     )
     return(
-      <this.show_page course={this.state.course_prop} />
+      <this.show_page course={this.state.course_prop} image={this.state.course_image} />
     )
   }
     

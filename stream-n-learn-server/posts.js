@@ -198,6 +198,25 @@ async function joinPost(username, sessionId) {
     .database(databaseId)
     .container(containerId)
     .item(sessionId).replace(results[0]);
+
+  
+  const querySpec2 = {
+    query: 'SELECT * FROM users WHERE users.username="' + username + '"',
+  }
+
+  const { resources: results2 } = await client
+    .database(databaseId)
+    .container("users")
+    .items.query(querySpec2)
+    .fetchAll()
+  console.log(results2);
+  results2[0]["courses"].push(sessionId);
+  const { item2 } = await client
+    .database(databaseId)
+    .container("users")
+    .item(results2[0].id).replace(results2[0]);
+
+
   return "Subscribed to post.";
 }
 

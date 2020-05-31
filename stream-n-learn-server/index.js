@@ -130,14 +130,12 @@ app.post('/api/createPost', (req, res, next) => {
     })
 })
 
-
-/*
-Request of form- /api/joinSession?username=username&id=courseid
-*/
-
-app.get('/api/joinSession', (req, res) => {
-  console.log(req.query);
-  posts.joinPost(req.query.username, req.query.postid).then((results) => {
+/**
+ * req.body.username: username,
+ * req.body.postid: course_id
+ */
+app.post('/api/joinSession', (req, res) => {
+  posts.joinPost(req.body.username, req.body.postid).then((results) => {
     res.json(results);
   });
 });

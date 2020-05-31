@@ -20,6 +20,24 @@ class CourseFeedCard extends Component {
     handleOnClick = () => {
         this.setState({redirect: true});
     }
+
+    enrollThisCourse = () => {
+        console.log(this.props.course);
+        fetch('/api/joinSession', {
+            "method": "POST",
+            "headers": {
+                "content-type": "application/json",
+                "accept": "application/json"
+            },
+            "body": JSON.stringify({
+                username: "lakshya",
+                postid: this.props.course.id
+            })
+        })
+        .then((res) => {
+            console.log(res);
+        })
+    }
     
     render() {
     if(this.course == '')
@@ -27,7 +45,7 @@ class CourseFeedCard extends Component {
     return (
         <div class="card card-cascade" onClick={this.handleOnClick}>
             <div class="view view-cascade overlay">
-                <img class="card-img-top" src={process.env.PUBLIC_URL + "images/" +  this.course.image_url} alt="Card image cap" />
+                <img class="card-img-top" src={process.env.PUBLIC_URL + "images/" +  this.course.image_url}  alt="Card image cap" />
                 <a>
                 <div class="mask rgba-white-slight"></div>
                 </a>
@@ -52,7 +70,7 @@ class CourseFeedCard extends Component {
                     </div>
                     )
                 }</p>
-                <a class="btn btn-unique">Enroll</a>
+                <a class="btn btn-unique" onClick={this.enrollThisCourse}>Enroll</a>
 
             </div>
 
