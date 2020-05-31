@@ -46,7 +46,7 @@ class CoursePage extends Component {
         button=<></>;
         if(this.props.type=="Enrolled" || this.state.current_state=="Enrolled")
         {
-            button=<MDBBtn color="green" size="lg">Watch Live</MDBBtn>    
+            button=<a href="http://localhost:3000/watchlive"><MDBBtn color="green" size="lg">Watch Live</MDBBtn></a>
         }
 
 

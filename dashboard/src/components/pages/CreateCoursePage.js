@@ -38,7 +38,8 @@ class CreateCoursePage extends Component {
         <div class="file-field">
     {/* <div class="btn btn-outline-info waves-effect btn-sm float-left"> */}
       {/* <span>Choose files</span> */}
-      <span>Upload a poster for your course: </span><input type="file" multiple/>
+      <span>Upload a poster for your course: </span><input type="file" multiple/><br></br><br></br>
+      <span>Upload a cover for your course: </span><input type="file" multiple/>
     {/* </div> */}
     {/* <div class="file-path-wrapper"> */}
       {/* <input class="file-path validate" type="text" placeholder="Upload one or more files"/> */}
