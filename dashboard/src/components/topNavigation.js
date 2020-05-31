@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav,MDBBtn, MDBTooltip,MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
+import { MDBNavbar, MDBNavbarBrand,MDBFormInline, MDBNavbarNav,MDBBtn, MDBTooltip,MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBIcon } from 'mdbreact';
 import {NavLink} from 'react-router-dom';
 class TopNavigation extends Component {
     state = {
@@ -28,7 +28,15 @@ class TopNavigation extends Component {
                 <MDBCollapse isOpen = { this.state.collapse } navbar>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;
-                    
+                    <MDBNavbarNav left>
+            <MDBNavItem>
+              <MDBFormInline waves>
+                <div className="md-form my-0">
+                  <input className="form-control mr-sm-2" type="text" placeholder="Search Courses" aria-label="Search" />
+                </div>
+              </MDBFormInline>
+            </MDBNavItem>
+          </MDBNavbarNav>
                     <MDBNavbarNav right>
                         <MDBNavItem active>
                         
@@ -58,6 +66,7 @@ class TopNavigation extends Component {
                             <NavLink to="#">&nbsp;&nbsp;&nbsp;<i class="far fa-lg fa-user-circle"></i></NavLink>
                         </MDBNavItem>
                     </MDBNavbarNav>
+
                     {/* <MDBNavbarNav right>
 
                     <MDBNavbarNav right>
