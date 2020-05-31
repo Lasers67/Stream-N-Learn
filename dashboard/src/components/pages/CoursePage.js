@@ -8,7 +8,7 @@ class CoursePage extends Component {
         this.state = {
             list: []
         }
-        console.log(this.props.course.course.title);
+        console.log(this.props);
         // this.course = this.props.course;
 
         // this.type = this.props.route.type;
@@ -31,7 +31,7 @@ class CoursePage extends Component {
         <div class="card card-cascade wider reverse">
                 {this.type}
             <div class="view view-cascade overlay">
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" alt="Card image cap"/>
+                <img class="card-img-top" src={process.env.PUBLIC_URL + "images/" +  this.props.course.image} alt="Card image cap"/>
                 <a href="#">
                 <div class="mask rgba-white-slight"></div>
                 </a>
