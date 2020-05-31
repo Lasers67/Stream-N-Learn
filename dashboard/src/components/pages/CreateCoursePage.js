@@ -20,6 +20,9 @@ class CreateCoursePage extends Component {
         <div class="form-group">
             <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Description"></textarea>
         </div>
+        <input type="text" style={{width: 300}} id="defaultContactFormName" class="form-control mb-1" placeholder="Duration (in hours)"/>
+        <input type="text"  style={{width: 300}} id="defaultContactFormName" class="form-control mb-2" placeholder="Start Date"/>
+        <input type="text"  style={{width: 300}} id="defaultContactFormName" class="form-control mb-2" placeholder="Start Time"/>
         <div class="custom-control custom-radio custom-control-inline">
           <label style={{"margin-right":"30px"}}>Make Course Live or upload as a playlist:</label>
           <input type="radio" class="custom-control-input" id="defaultInline1" name="createCourse" />
@@ -42,7 +45,7 @@ class CreateCoursePage extends Component {
   </div>
 
         {/* </div> */}
-
+<br></br>
         {/* <div class="custom-control custom-checkbox mb-4">
             <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy"/>
             <label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this message</label>
