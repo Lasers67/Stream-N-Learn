@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-
+import {MDBBtn} from 'mdbreact';
 class CoursePage extends Component {
 
     constructor(props){
         super(props);
         this.state = {
-            list: []
+            list: [],
+            current_state:""
         }
         console.log(this.props);
         // this.course = this.props.course;
@@ -20,6 +21,11 @@ class CoursePage extends Component {
     }
     
     render() {
+        var min = 1;
+   var max = 100;
+   var rand =  min + (Math.random() * (max-min));
+
+
         var tags=[];
         for(var i=0;i<this.props.course.course.tags.length;i++){
         tags.push(<span>{this.props.course.course.tags[i]} &nbsp;</span>);
@@ -31,7 +37,25 @@ class CoursePage extends Component {
             var day = dateObj.getUTCDate();
             var year = dateObj.getUTCFullYear();
             var newdate = year + "/" + month + "/" + day;
-        
+        let price;
+        price=price=<p class="card-text"><h4>Price: ${parseInt(rand)}.00</h4>
+        </p>;;
+        if(this.props.type=="Enrolled" || this.state.current_state=="Enrolled")
+            price=<></>;
+        let button;
+        button=<></>;
+        if(this.props.type=="Enrolled" || this.state.current_state=="Enrolled")
+        {
+            button=<MDBBtn color="green" size="lg">Watch Live</MDBBtn>    
+        }
+
+
+        if(this.props.type=="My"){
+            button=<MDBBtn color="green" size="lg">Go Live</MDBBtn>
+        }
+        if(this.props.type=="UnEnrolled" && this.state.current_state!="Enrolled"){
+            button=<MDBBtn color="primary" onClick={()=>{this.setState({current_state:"Enrolled"})}}>Enrol Me</MDBBtn>
+        }
     return(
         
         <div class="card card-cascade wider reverse">
@@ -55,9 +79,9 @@ class CoursePage extends Component {
                 
                 <p class="card-text">{this.props.course.course.description}</p>
                 <p class="card-text">Scheduled On:  {newdate}</p>
-                <p class="card-text">Duration:  {this.props.course.course.duration} hours
-
-                </p>
+                <p class="card-text">Duration:  {this.props.course.course.duration} hours</p>
+                {price}
+                {button}<br /><br /><br />
 
                 
                 <a class="px-2 fa-lg li-ic"><i class="fab fa-linkedin-in"></i></a>
@@ -65,7 +89,7 @@ class CoursePage extends Component {
                 <a class="px-2 fa-lg tw-ic"><i class="fab fa-twitter"></i></a>
                 
                 <a class="px-2 fa-lg fb-ic"><i class="fab fa-facebook-f"></i></a>
-
+                
             </div>
 
         </div>

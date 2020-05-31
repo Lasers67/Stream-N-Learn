@@ -30,7 +30,7 @@ class FetchEnroledCourses extends Component {
    
   show_page(props){
     
-    return(<CoursePage course={props}/>);
+    return(<CoursePage course={props} type="My"/>);
   }
   
   render() {
