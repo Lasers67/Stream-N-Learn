@@ -51,7 +51,7 @@ class CoursePage extends Component {
 
 
         if(this.props.type=="My"){
-            button=<MDBBtn color="green" size="lg">Go Live</MDBBtn>
+            button=<a href="/streamlive"><MDBBtn color="green" size="lg" >Go Live</MDBBtn></a>
         }
         if(this.props.type=="UnEnrolled" && this.state.current_state!="Enrolled"){
             button=<MDBBtn color="primary" onClick={()=>{this.setState({current_state:"Enrolled"})}}>Enrol Me</MDBBtn>
