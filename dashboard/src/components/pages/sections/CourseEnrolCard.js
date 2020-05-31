@@ -1,7 +1,7 @@
 import React from 'react';
 import { MDBCard, MDBCardBody, MDBIcon, MDBRow, MDBCol, MDBCardText } from 'mdbreact';
 
-const CourseEnrolCard = ({course}) => {
+const CourseEnrolCard = ({course, img}) => {
     var dateObj = new Date(course.start_time);
     var month = dateObj.getUTCMonth() + 1; //months from 1-12
     var day = dateObj.getUTCDate();
@@ -13,7 +13,7 @@ const CourseEnrolCard = ({course}) => {
   return (
         <div class="card card-cascade">
             <div class="view view-cascade overlay">
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap" />
+                <img class="card-img-top" src={img} alt="Card image cap" />
                 <a>
                 <div class="mask rgba-white-slight"></div>
                 </a>

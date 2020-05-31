@@ -29,7 +29,7 @@ class FetchEnroledCourses extends Component {
     for (var i = 0; i < list.length; i+=3) {     
       rows.push(
         <div className="row" key={i}>
-          <div className="col-lg-4 col-md-12 mb-4"><Link  to="/enroledcourse/"><CourseEnrolCard course={list[i]} /></Link></div>
+          <div className="col-lg-4 col-md-12 mb-4"><Link  to="/enroledcourse/"><CourseEnrolCard course={list[i]} img="https://learnworthy.net/wp-content/uploads/2019/12/Why-programming-is-the-skill-you-have-to-learn-1280x720.jpg" /></Link></div>
           <div className="col-lg-4 col-md-12 mb-4"><Link  to="/enroledcourse/"><CourseEnrolCard course={i+1 < list.length ? list[i+1] : ''} /></Link></div>
           <div className="col-lg-4 col-md-12 mb-4"><Link  to="/enroledcourse/"><CourseEnrolCard course={i+2 < list.length ? list[i+2] : ''} /></Link></div>
         </div>
