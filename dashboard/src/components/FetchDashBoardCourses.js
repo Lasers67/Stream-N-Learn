@@ -26,7 +26,7 @@ class FetchDashBoardCourses extends Component {
   }
   show_page(props){
     
-    return(<CoursePage course={props}/>);
+    return(<CoursePage course={props} type="UnEnrolled"/>);
   }
   render() {
     // const { list } = this.state.course_list;
@@ -41,6 +41,7 @@ class FetchDashBoardCourses extends Component {
 
           <div className="col-lg-4 col-md-12 mb-4" onClick={()=>{this.setState({show:true,course_prop:this.state.course_list[2],course_image:"chess_big.jpg"})}}><CourseFeedCard course={i+2 < this.state.course_list.length ? this.state.course_list[i+2] : ''} /></div>
         </div>
+        
       );
     }
     // for (var i = 0; i < this.state.course_list.length; i+=3) {     
