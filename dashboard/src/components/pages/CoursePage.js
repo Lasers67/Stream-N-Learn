@@ -8,8 +8,9 @@ class CoursePage extends Component {
         this.state = {
             list: []
         }
+        console.log(this.props.course.course.title);
         // this.course = this.props.course;
-        console.log(this.props);
+
         // this.type = this.props.route.type;
         // this.dateObj = new Date(this.course.start_time);
         // this.month = this.dateObj.getUTCMonth() + 1;
@@ -19,6 +20,10 @@ class CoursePage extends Component {
     }
     
     render() {
+        var tags=[];
+        for(var i=0;i<this.props.course.course.tags.length;i++){
+        tags.push(<span>{this.props.course.course.tags[i]} &nbsp;</span>);
+        }
         if(this.course == '')
             return (<></>);
     return(
@@ -36,13 +41,11 @@ class CoursePage extends Component {
             <div class="card-body card-body-cascade text-center">
 
                 
-                <h4 class="card-title"><strong>My adventure</strong></h4>
+                <h4 class="card-title"><strong>{this.props.course.course.title}</strong></h4>
                 
-                <h6 class="font-weight-bold indigo-text py-2">Photography</h6>
+    <h6 class="font-weight-bold indigo-text py-2">{tags}</h6>
                 
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem perspiciatis
-                voluptatum a, quo nobis, non commodi quia repellendus sequi nulla voluptatem dicta reprehenderit, placeat
-                laborum ut beatae ullam suscipit veniam.
+                <p class="card-text">{this.props.course.course.description}
                 </p>
 
                 
