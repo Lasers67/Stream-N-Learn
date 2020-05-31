@@ -123,6 +123,7 @@ app.post('/api/createPost', (req, res, next) => {
   posts.createPost(req.body)
     .then((result) => {
       res.json(result);
+      console.log("done")
     })
     .catch((err) => {
       console.log(err);

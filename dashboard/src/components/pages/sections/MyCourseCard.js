@@ -11,7 +11,6 @@ const MyCourseCard = ({course}) => {
     var day = dateObj.getUTCDate();
     var year = dateObj.getUTCFullYear();
     var newdate = year + "/" + month + "/" + day;
-    
     if(course == '')
         return (<></>);
   return (
@@ -32,7 +31,7 @@ const MyCourseCard = ({course}) => {
                 
                 <p class="card-text">{course.description}
                 </p>
-
+                
             </div>
 
             
