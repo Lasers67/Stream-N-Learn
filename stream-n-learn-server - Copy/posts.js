@@ -79,7 +79,7 @@ async function getAllPosts() {
 
   var final = []
   for(var queryResult of results) {
-    if(queryResult["creator"] != "lakshya" && queryResult["students"].indexOf("lakshya") == -1) {
+    if(queryResult["creator"] != "vishal" && queryResult["students"].indexOf("vishal") == -1) {
       final.push(queryResult);
     }
   }
@@ -135,7 +135,7 @@ async function getAllPostsFromTags(tags_arr) {
 
 async function getMyPosts(username) {
 
-  username = 'lakshya';
+  username = 'vishal';
   const querySpec = {
     query: 'SELECT * FROM posts WHERE posts.creator="' + username + '"',
   }
